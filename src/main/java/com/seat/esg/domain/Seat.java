@@ -13,10 +13,22 @@ public class Seat {
     @Column(name = "seat_id")
     private Long id;
 
-    private Long seatNum;
+    private int seatNum;
 
-    private Long emptyMinute;
+    private int emptyMinute;
 
     @Enumerated(EnumType.STRING)
     private SeatStatus status;
+
+    public void addTime(int time) {
+        this.emptyMinute += time;
+    }
+
+    public void initTime() {
+        this.emptyMinute = 0;
+    }
+
+    public void changeStatus(SeatStatus status) {
+        this.status = status;
+    }
 }
