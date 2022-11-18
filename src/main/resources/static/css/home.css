@@ -1,0 +1,117 @@
+body {
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgb(91, 91, 218);
+    color: white
+}
+
+
+#seats ul {
+    list-style-type: none;
+}
+
+#gridseatinfo {
+    text-align: center;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#window {
+    text-align: center;
+    border: 1px solid gray;
+    background-color: gray;
+    margin: 15px 15px 0;
+}
+
+#gridmap {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+}
+
+#studyroom {
+    writing-mode: vertical-lr;
+    text-align: center;
+    padding: 170px 20px;
+    border: 1px solid black;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background-color: gray;
+}
+
+#seats {
+    display: grid;
+    text-align: center;
+    grid-template-columns: auto auto;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#gridstateseat {
+    margin-top: 20px;
+    border-radius: 10px;
+    display: grid;
+    text-align: center;
+    border: 1px solid black;
+    grid-template-columns: auto auto auto;
+}
+
+#seatinfo {
+    text-align: center;
+    border-right: 1px solid black;
+    border-radius: 10px;
+    margin: 0;
+    padding-top: 15px;
+    color: white;
+    background-color: gray;
+}
+
+/*
+.seat {
+    border: 1px solid gray;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: gray;
+    margin: 25px 5px;
+}
+*/
+
+#backmap {
+    background-color: rgb(96, 96, 96);
+    padding-top: 5px;
+}
+
+/*
+.buttongrid {
+    display: grid;
+    grid-template-rows: auto;
+}
+*/
+
+.seatbutton {
+    padding: 20px 60px;
+    border: 0;
+    margin: 25px 5px;
+    font-size: 20px;
+}
+
+.usingseat {
+    background-color: red;
+}
+
+.emptyseat {
+    background-color: greenyellow;
+}
+
+.helpseat {
+    background-color: yellow;
+}
