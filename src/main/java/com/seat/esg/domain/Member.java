@@ -3,10 +3,7 @@ package com.seat.esg.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter @Setter
@@ -19,4 +16,9 @@ public class Member {
     private String name;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private MemberRole role;
+
+    boolean enabled;
 }
