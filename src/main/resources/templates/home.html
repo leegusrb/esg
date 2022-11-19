@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/home.css"/>
+    <script type="text/javascript" src="/js/home.js"></script>
     <title>자리 안내 서비스</title>
 </head>
 <body>
-<h1>좌석 안내 서비스 입니당당구리.</h1>
+<h1 id="title">좌석 안내 서비스 입니당당구리.</h1>
 <div id="gridseatinfo">
     <p id="seatinfo">잔여좌석 안내</p>
     <p>이용중 : <span>5</span>석</p>
@@ -25,39 +26,36 @@
         </div>
         <div id="seats">
             <div th:each="seat : ${seats}" th:switch="${seat.status.toString()}">
-                <button th:case="EMPTY" class="seatbutton emptyseat" onclick="alert('자리비움 신청 불가')" th:text="${seat.seatNum}">1</button>
-                <button th:case="AWAY" class="seatbutton helpseat" onclick="alert('자리비움 신청')" th:text="${seat.seatNum}">1</button>
-                <button th:case="FULL" class="seatbutton usingseat" onclick="alert('자리비움 신청 불가')" th:text="${seat.seatNum}">1</button>
+                <button th:case="EMPTY" class="seatbutton emptyseat" onclick="alert('이미 비어있는 자리입니다.')"
+                        th:text="${seat.seatNum}">
+                </button>
+                <button th:case="AWAY" class="seatbutton helpseat"
+                        onclick="document.getElementById('id01').style.display='block'"
+                        th:text="${seat.seatNum}">
+                </button>
+                <button th:case="FULL" class="seatbutton usingseat" onclick="alert('자리비움 신청 불가')"
+                        th:text="${seat.seatNum}">
+                </button>
+                <div id="id01" class="modal">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                          title="Close Modal">&times;</span>
+                    <form class="modal-content" action="/home">
+                        <div class="container">
+                            <h1>자리 비움 요청</h1>
+                            <p>자리 비움 요청을 하시겠습니까?</p>
+
+                            <div class="clearfix">
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                                        class="cancelbtn">취소
+                                </button>
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                                        class="deletebtn">자리 비움 요청
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-<!--
-            <div>
-                <button class="seatbutton usingseat" onclick="alert('자리비움 신청 불가')">2</button>
-            </div>
-            <div>
-                <button class="seatbutton usingseat" onclick="alert('자리비움 신청 불가')">3</button>
-            </div>
-            <div>
-                <button class="seatbutton helpseat" onclick="alert('자리비움 신청')">4</button>
-            </div>
-            <div>
-                <button class="seatbutton usingseat" onclick="alert('자리비움 신청 불가')">5</button>
-            </div>
-            <div>
-                <button class="seatbutton usingseat" onclick="alert('자리비움 신청 불가')">6</button>
-            </div>
-            <div>
-                <button class="seatbutton helpseat" onclick="alert('자리비움 신청')">7</button>
-            </div>
-            <div>
-                <button class="seatbutton usingseat" onclick="alert('자리비움 신청 불가')">8</button>
-            </div>
--->
-            <!-- <ul>
-                <li class="seat">x</li>
-                <li class="seat">x</li>
-                <li class="seat">x</li>
-                <li class="seat">x</li>
-            </ul> -->
         </div>
     </div>
 </div>
