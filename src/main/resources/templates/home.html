@@ -8,12 +8,13 @@
     <title>자리 안내 서비스</title>
 </head>
 <body>
-<h1 id="title">좌석 안내 서비스 입니당당구리.</h1>
+    <h1 id="title">좌석 안내 서비스 입니당당구리.</h1>
 <div id="gridseatinfo">
     <p id="seatinfo">잔여좌석 안내</p>
     <p>이용중 : <span th:text="${fullSize}"></span>석</p>
     <p>이용 가능 : <span th:text="${emptySize}"></span>석</p>
     <p>자리 비움 : <span th:text="${awaySize}"></span>석</p>
+    <button id="titlebutton" class="button" style="vertical-align:middle" onclick="location.href='manager'"><span>관리자</span></button>
 </div>
 <div id="backmap">
     <div id="window">
@@ -63,6 +64,6 @@
     <p><span style="color:greenyellow">●</span> 이용 가능</p>
     <p><span style="color:yellow">●</span>자리 비움</p>
 </div>
-<script  type="text/javascript" src="/js/home.js"></script>
+<script type="text/javascript" src="/js/home.js"></script>
 </body>
 </html>

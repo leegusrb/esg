@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -38,7 +37,7 @@ public class SecurityConfig {
                 )
                 .formLogin((form) -> form
                         .loginPage("/account/login")
-                        .defaultSuccessUrl("/")
+                        .defaultSuccessUrl("/manager")
                         .usernameParameter("name")
                         .passwordParameter("password")
                         .successHandler(
@@ -46,7 +45,7 @@ public class SecurityConfig {
                                     @Override
                                     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
                                         System.out.println("authentication = " + authentication.getName());
-                                        response.sendRedirect("/");
+                                        response.sendRedirect("/manager");
                                     }
                                 }
                         )
