@@ -20,3 +20,4 @@ spring:
 logging:
   level:
     org.hibernate.sql: debug
+#    org.springframework.web: debug
