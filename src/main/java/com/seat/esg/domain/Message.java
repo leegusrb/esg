@@ -13,5 +13,5 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class Message {
     private int seatNum;
-    private LocalDateTime sendTime;
+    private String sendTime;
 }

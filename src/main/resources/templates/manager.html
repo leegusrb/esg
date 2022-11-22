@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/manager.css"/>
+    <script src="/webjars/jquery/dist/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <title>자리 안내 서비스</title>
 </head>
 <body>
@@ -72,7 +74,7 @@
             <p><span style="color:yellow">●</span>자리 비움</p>
         </div>
     </div>
-    <div id="admin_alam">
+    <div id="admin_alam" class="text">
 
 <!--        <div class="alam">-->
 <!--            <p class="alam_text">[18:41] 4번 좌석 자리비움 요청</p>-->
@@ -98,7 +100,25 @@
     </div>
 </div>
 <div class="text"></div>
-<script src="/js/home.js"></script>
-<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>-->
+<script src='/js/home.js'></script>
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+<script>
+    $(function () {
+        var inputMessage = $('.text');
+
+        var sock = new SockJS("/ws");
+
+        sock.onopen = function () {
+            sock.onmessage = function (e) {
+                var content = JSON.parse(e.data);
+                inputMessage.append(
+                    '<div class="alam">\n' +
+                    '<p class="alam_text">' + content.sendTime + ' ' + content.seatNum + '번 좌석 자리비움 요청</p>\n' +
+                    '</div>')
+            }
+        }
+    })
+</script>
 </body>
 </html>

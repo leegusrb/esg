@@ -1,7 +1,7 @@
 package com.seat.esg.component;
 
-import com.seat.esg.webSocket.Message;
-import com.seat.esg.webSocket.Utils;
+//import com.seat.esg.webSocket.Message;
+//import com.seat.esg.webSocket.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;

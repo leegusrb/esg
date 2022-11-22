@@ -1,6 +1,8 @@
 package com.seat.esg.config;
 
+import com.seat.esg.component.MessageHandler;
 import com.seat.esg.component.WebSocketComponent;
+import com.seat.esg.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,13 +15,13 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @RequiredArgsConstructor
 public class WebSocketConfig implements WebSocketConfigurer {
 
-    private final WebSocketComponent webSocketComponent;
+    private final MessageHandler messageHandler;
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(webSocketComponent, "/ws")
+        registry.addHandler(messageHandler, "/ws")
                 .setAllowedOriginPatterns("*")
-                .withSockJS();
-//                .setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js");
+                .withSockJS()
+                .setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js");
     }
 }
