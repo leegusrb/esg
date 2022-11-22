@@ -5,16 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/home.css"/>
+    <script src="/webjars/jquery/dist/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <title>자리 안내 서비스</title>
 </head>
 <body>
-    <h1 id="title">좌석 안내 서비스 입니당당구리.</h1>
+<h1 id="title">좌석 안내 서비스 입니당당구리.</h1>
 <div id="gridseatinfo">
     <p id="seatinfo">잔여좌석 안내</p>
     <p>이용중 : <span th:text="${fullSize}"></span>석</p>
     <p>이용 가능 : <span th:text="${emptySize}"></span>석</p>
     <p>자리 비움 : <span th:text="${awaySize}"></span>석</p>
-<!--    <button id="titlebutton" class="button" style="vertical-align:middle" onclick="location.href='manager'"><span>관리자</span></button>-->
+    <!--    <button id="titlebutton" class="button" style="vertical-align:middle" onclick="location.href='manager'"><span>관리자</span></button>-->
 </div>
 <div id="backmap">
     <div id="window">
@@ -49,8 +51,9 @@
                                         class="cancelbtn">취소
                                 </button>
                                 <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                                        class="deletebtn">자리 비움 요청
+                                        class="request" id="request">자리 비움 요청
                                 </button>
+                                <div style="display: none" class="seatNum" th:text="${seat.seatNum}"></div>
                             </div>
                         </div>
                     </form>
@@ -64,6 +67,11 @@
     <p><span style="color:greenyellow">●</span> 이용 가능</p>
     <p><span style="color:yellow">●</span>자리 비움</p>
 </div>
-<script type="text/javascript" src="/js/home.js"></script>
+<script>
+    $(function () {
+        var sendInfo = $('.request');
+        var seatNum = $('.seatNum').data()
+    })
+</script>
 </body>
 </html>
