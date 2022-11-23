@@ -1,6 +1,7 @@
 package com.seat.esg.repository;
 
 import com.seat.esg.domain.Member;
+import com.seat.esg.domain.Message;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

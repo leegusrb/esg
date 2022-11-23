@@ -11,8 +11,8 @@ spring:
       password: 123
 
   jpa:
-#    hibernate:
-#      ddl-auto: create
+    hibernate:
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true

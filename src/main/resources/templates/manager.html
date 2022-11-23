@@ -75,7 +75,11 @@
             <p><span style="color:yellow">●</span>자리 비움</p>
         </div>
     </div>
-    <div id="admin_alam" class="messageForm">
+    <div id="admin_alam" class="requestMessageForm">
+        <div class="alam" th:each="message : ${messages}">
+            <p class="alam_text" th:text="${message.sendTime}"></p>
+            <p class="alam_text" th:text="${message.seatNum} + '번 좌석 자리비움 요청'"></p>
+        </div>
     </div>
 </div>
 <div class="text"></div>
@@ -84,7 +88,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script>
     $(function () {
-        var inputMessage = $('.messageForm');
+        var inputMessage = $('.requestMessageForm');
         var removeBtn = [];
         for (let i = 1; i <= 8; i++) {
             removeBtn[i] = $('.request' + i);
@@ -94,17 +98,19 @@
 
         sock.onopen = function () {
             sock.onmessage = function (e) {
-                var content = JSON.parse(e.data);
-                inputMessage.append(
-                    '<div class="alam" id="alarm' + content.seatNum + '">\n' +
-                    '<p class="alam_text">' + content.sendTime + ' ' + content.seatNum + '번 좌석 자리비움 요청</p>\n' +
-                    '</div>')
+                // var content = JSON.parse(e.data);
+                // inputMessage.append(
+                //     '<div class="alam" id="alarm' + content.seatNum + '">\n' +
+                //     '<p class="alam_text">' + content.sendTime + ' ' + content.seatNum + '번 좌석 자리비움 요청</p>\n' +
+                //     '</div>')
+                window.location.reload();
             }
         }
 
         for (let i = 1; i <= 8; i++) {
             removeBtn[i].click(function () {
-                $('#alarm' + i).remove();
+                // $('#alarm' + i).remove();
+                sock.send(JSON.stringify({seatNum: i, messageType: 'DELETE'}));
             });
         }
     })

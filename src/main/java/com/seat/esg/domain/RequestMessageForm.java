@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MessageForm {
+public class RequestMessageForm {
     private int seatNum;
-    private String sendTime;
+    private String messageType;
 }

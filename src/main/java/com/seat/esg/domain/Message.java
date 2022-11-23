@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter @Setter
@@ -19,13 +20,20 @@ public class Message {
     private Long id;
 
     private int seatNum;
-    private LocalDateTime sendTime;
+    private String sendTime;
 
     //==생성 메서드==//
     public static Message createMessage(int seatNum) {
         Message message = new Message();
         message.setSeatNum(seatNum);
-        message.setSendTime(LocalDateTime.now());
+        String formatTime = '[' + formatTime(LocalDateTime.now()) + ']';
+        message.setSendTime(formatTime);
         return message;
+    }
+
+
+    public static String formatTime(LocalDateTime time) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        return time.format(formatter);
     }
 }

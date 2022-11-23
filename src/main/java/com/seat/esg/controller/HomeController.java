@@ -1,8 +1,10 @@
 package com.seat.esg.controller;
 
+import com.seat.esg.domain.Message;
 import com.seat.esg.domain.Seat;
 import com.seat.esg.domain.SeatStatus;
 import com.seat.esg.repository.SeatRepository;
+import com.seat.esg.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,20 +17,22 @@ import java.util.List;
 public class HomeController {
 
     private final SeatRepository seatRepository;
+    private final MessageService messageService;
 
     @GetMapping("/")
     public String home(Model model) {
-        make(model);
+        makeSeatData(model);
         return "home";
     }
 
     @GetMapping("/manager")
     public String manager(Model model) {
-        make(model);
+        makeSeatData(model);
+        makeMassegeData(model);
         return "manager";
     }
 
-    private void make(Model model) {
+    private void makeSeatData(Model model) {
         List<Seat> seats = seatRepository.findAll();
         int awaySize = seatRepository.findByStatus(SeatStatus.AWAY).size();
         int emptySize = seatRepository.findByStatus(SeatStatus.EMPTY).size();
@@ -37,5 +41,10 @@ public class HomeController {
         model.addAttribute("awaySize", awaySize);
         model.addAttribute("emptySize", emptySize);
         model.addAttribute("fullSize", fullSize);
+    }
+
+    private void makeMassegeData(Model model) {
+        List<Message> messages = messageService.findMessages();
+        model.addAttribute("messages", messages);
     }
 }

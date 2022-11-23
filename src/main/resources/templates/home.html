@@ -73,16 +73,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script th:inline="javascript">
     $(function () {
-        var sendBtn = [];
+        var requestBtn = [];
         for (let i = 1; i <= 8; i++) {
-            sendBtn[i] = $('.request' + i);
+            requestBtn[i] = $('.request' + i);
         }
 
         var sock = new SockJS("/ws");
 
+        sock.onopen = function () {
+            sock.onmessage = function (e) {
+                // var content = JSON.parse(e.data);
+                // inputMessage.append(
+                //     '<div class="alam" id="alarm' + content.seatNum + '">\n' +
+                //     '<p class="alam_text">' + content.sendTime + ' ' + content.seatNum + '번 좌석 자리비움 요청</p>\n' +
+                //     '</div>')
+                window.location.reload();
+            }
+        }
+
         for (let i = 1; i <= 8; i++) {
-            sendBtn[i].click(function () {
-                sock.send(JSON.stringify({seatNum: i, sendTime: new Date().toLocaleString()}));
+            requestBtn[i].click(function () {
+                // sock.send(JSON.stringify({seatNum: i, sendTime: new Date().toLocaleString()}));
+                sock.send(JSON.stringify({seatNum: i, messageType: 'REQUEST'}));
             });
         }
     });

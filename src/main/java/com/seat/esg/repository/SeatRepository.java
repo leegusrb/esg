@@ -33,4 +33,10 @@ public class SeatRepository {
                 .setParameter("status", status)
                 .getResultList();
     }
+
+    public Seat findOneBySeatNum(int seatNum) {
+        return em.createQuery("select s from Seat s where s.seatNum = :seatNum", Seat.class)
+                .setParameter("seatNum", seatNum)
+                .getSingleResult();
+    }
 }
