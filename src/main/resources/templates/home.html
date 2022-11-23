@@ -73,7 +73,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 <script th:inline="javascript">
     $(function () {
-        var inputMessage = $('.text');
         var sendBtn = [];
         for (let i = 1; i <= 8; i++) {
             sendBtn[i] = $('.request' + i);
@@ -81,14 +80,6 @@
 
         var sock = new SockJS("/ws");
 
-        sock.onopen = function () {
-            // alert('open');
-            sock.onmessage = function (e) {
-                // alert('hi');
-                var content = JSON.parse(e.data);
-                inputMessage.append(content.seatNum + ' ' + content.sendTime + '<br>');
-            }
-        }
         for (let i = 1; i <= 8; i++) {
             sendBtn[i].click(function () {
                 sock.send(JSON.stringify({seatNum: i, sendTime: new Date().toLocaleString()}));

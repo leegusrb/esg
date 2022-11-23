@@ -1,10 +1,7 @@
 package com.seat.esg.config;
 
 import com.seat.esg.component.MessageHandler;
-import com.seat.esg.component.WebSocketComponent;
-import com.seat.esg.domain.Member;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;

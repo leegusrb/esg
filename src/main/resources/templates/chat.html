@@ -11,7 +11,7 @@
 </div>
 
 <div id="chat" hidden="hidden">
-  <input id="message">
+  <input id="messageForm">
   <button id="sendBtn">전송</button>
   <div id="chatBox"></div>
 </div>
@@ -45,11 +45,11 @@
   }
 
   function sendMessage() {
-    sock.send($("#message").val());
-    $('#message').val("");
+    sock.send($("#messageForm").val());
+    $('#messageForm').val("");
   }
 
-  $("#message").keyup(e => {
+  $("#messageForm").keyup(e => {
     if (e.keyCode == 13) {
       sendMessage();
     }

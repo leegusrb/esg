@@ -1,7 +1,7 @@
 package com.seat.esg.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seat.esg.domain.Message;
+import com.seat.esg.domain.MessageForm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,10 +35,10 @@ public class MessageHandler extends TextWebSocketHandler {
         String payload = textMessage.getPayload();
         log.info("payload : {}", payload);
 
-        Message message = objectMapper.readValue(payload, Message.class);
+        MessageForm messageForm = objectMapper.readValue(payload, MessageForm.class);
         sessions.forEach((sessionId, sessionInMap) -> {
             try {
-                sessionInMap.sendMessage(new TextMessage(objectMapper.writeValueAsString(message)));
+                sessionInMap.sendMessage(new TextMessage(objectMapper.writeValueAsString(messageForm)));
             } catch (Exception e) {
                 e.printStackTrace();
             }
