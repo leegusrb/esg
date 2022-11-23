@@ -1,12 +1,10 @@
 package com.seat.esg.repository;
 
 import com.seat.esg.domain.Member;
-import com.seat.esg.domain.Message;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository

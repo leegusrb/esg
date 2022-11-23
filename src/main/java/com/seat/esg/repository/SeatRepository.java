@@ -1,6 +1,5 @@
 package com.seat.esg.repository;
 
-import com.seat.esg.domain.Member;
 import com.seat.esg.domain.Seat;
 import com.seat.esg.domain.SeatStatus;
 import lombok.RequiredArgsConstructor;

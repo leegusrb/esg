@@ -1,10 +1,10 @@
 package com.seat.esg.service;
 
+import com.seat.esg.domain.SeatNumber;
 import com.seat.esg.domain.Seat;
 import com.seat.esg.domain.SeatStatus;
 import com.seat.esg.repository.SeatRepository;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +28,14 @@ public class SeatService {
 
     public Seat findOne(Long seatId) {
         return seatRepository.findOne(seatId);
+    }
+
+    public SeatNumber countSeatNumber() {
+        SeatNumber seatNumber = new SeatNumber();
+        seatNumber.setEmptySeat(seatRepository.findByStatus(SeatStatus.EMPTY).size());
+        seatNumber.setAwaySeat(seatRepository.findByStatus(SeatStatus.AWAY).size());
+        seatNumber.setFullSeat(seatRepository.findByStatus(SeatStatus.FULL).size());
+        return seatNumber;
     }
 
     @Transactional
