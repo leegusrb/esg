@@ -32,30 +32,28 @@ public class MessageHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-//        String payload = textMessage.getPayload();
-//        log.info("payload : {}", payload);
-//
-//        MessageForm messageForm = objectMapper.readValue(payload, MessageForm.class);
-//        sessions.forEach((sessionId, sessionInMap) -> {
-//            try {
-//                sessionInMap.sendMessage(new TextMessage(objectMapper.writeValueAsString(messageForm)));
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        });
-
         String msg = message.getPayload();
 
         RequestMessageForm requestMessageForm = objectMapper.readValue(msg, RequestMessageForm.class);
         int seatNum = requestMessageForm.getSeatNum();
         String messageType = requestMessageForm.getMessageType();
 
-        if (messageType.equals("REQUEST")) {
-            messageService.createAwayRequestMessage(seatNum);
-        } else if (messageType.equals("DELETE")) {
-            messageService.deleteClearSeatMessage(seatNum);
-            seatService.changeSeatStatus(seatNum, SeatStatus.EMPTY);
+        switch (messageType) {
+            case "REQUEST":
+                messageService.createAwayRequestMessage(seatNum);
+                break;
+            case "CHANGE-EMPTY":
+                messageService.deleteClearSeatMessage(seatNum);
+                seatService.changeSeatStatus(seatNum, SeatStatus.EMPTY);
+                break;
+            case "CHANGE-AWAY":
+                seatService.changeSeatStatus(seatNum, SeatStatus.AWAY);
+                break;
+            case "CHANGE-FULL":
+                seatService.changeSeatStatus(seatNum, SeatStatus.FULL);
+                break;
         }
+
 
         sessions.forEach((sessionId, sessionInMap) -> {
             try {

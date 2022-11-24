@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/manager.css"/>
-    <script src="/webjars/jquery/dist/jquery.min.js"></script>
-    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <title>자리 안내 서비스</title>
 </head>
 <body>
@@ -31,19 +29,21 @@
                     <div id="seats">
                         <div th:each="seat : ${seats}" th:switch="${seat.status.toString()}">
 
-                            <button th:case="EMPTY" class="seatbutton emptyseat" onclick="alert('이미 비어있는 자리입니다.')"
+                            <button th:case="EMPTY" class="seatbutton emptyseat"
+                                    th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'block\''"
                                     th:text="${seat.seatNum}">
                             </button>
                             <button th:case="AWAY" class="seatbutton helpseat"
                                     th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'block\''"
                                     th:text="${seat.seatNum}">
                             </button>
-                            <button th:case="FULL" class="seatbutton usingseat" onclick="alert('자리비움 신청 불가')"
+                            <button th:case="FULL" class="seatbutton usingseat"
+                                    th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'block\''"
                                     th:text="${seat.seatNum}">
                             </button>
 
                             <div th:id="'id' + ${seat.seatNum}" class="modal">
-                            <span th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'none\''"
+                            <span th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'block\''"
                                   title="Close Modal">&times;</span>
                                 <form class="modal-content" action="/home">
                                     <div class="container">
@@ -53,12 +53,18 @@
                                         <div class="clearfix">
                                             <button type="button"
                                                     th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'none\''"
-                                                    class="cancelbtn">취소
+                                                    th:class="'change-empty' + ${seat.seatNum}"
+                                                    th:classappend="${seat.seatNum}">이용 가능으로 변경
                                             </button>
                                             <button type="button"
                                                     th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'none\''"
-                                                    th:class="'request' + ${seat.seatNum}" id="request"
-                                                    th:classappend="${seat.seatNum}">이용 가능으로 변경
+                                                    th:class="'change-away' + ${seat.seatNum}"
+                                                    th:classappend="${seat.seatNum}">자리 비움으로 변경
+                                            </button>
+                                            <button type="button"
+                                                    th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'none\''"
+                                                    th:class="'change-full' + ${seat.seatNum}"
+                                                    th:classappend="${seat.seatNum}">이용 중으로 변경
                                             </button>
                                         </div>
                                     </div>
@@ -89,9 +95,17 @@
 <script>
     $(function () {
         var inputMessage = $('.requestMessageForm');
-        var removeBtn = [];
+        var changeEmptyBtn = [];
         for (let i = 1; i <= 8; i++) {
-            removeBtn[i] = $('.request' + i);
+            changeEmptyBtn[i] = $('.change-empty' + i);
+        }
+        var changeAwayBtn = [];
+        for (let i = 1; i <= 8; i++) {
+            changeAwayBtn[i] = $('.change-away' + i);
+        }
+        var changeFullBtn = [];
+        for (let i = 1; i <= 8; i++) {
+            changeFullBtn[i] = $('.change-full' + i);
         }
 
         var sock = new SockJS("/ws");
@@ -103,8 +117,14 @@
         }
 
         for (let i = 1; i <= 8; i++) {
-            removeBtn[i].click(function () {
-                sock.send(JSON.stringify({seatNum: i, messageType: 'DELETE'}));
+            changeEmptyBtn[i].click(function () {
+                sock.send(JSON.stringify({seatNum: i, messageType: 'CHANGE-EMPTY'}));
+            });
+            changeAwayBtn[i].click(function () {
+                sock.send(JSON.stringify({seatNum: i, messageType: 'CHANGE-AWAY'}));
+            });
+            changeFullBtn[i].click(function () {
+                sock.send(JSON.stringify({seatNum: i, messageType: 'CHANGE-FULL'}));
             });
         }
     })
