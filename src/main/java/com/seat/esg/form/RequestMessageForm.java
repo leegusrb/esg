@@ -1,4 +1,4 @@
-package com.seat.esg.domain;
+package com.seat.esg.form;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

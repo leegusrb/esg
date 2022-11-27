@@ -53,18 +53,15 @@
                                         <div class="clearfix">
                                             <button type="button"
                                                     th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'none\''"
-                                                    th:class="'change-empty' + ${seat.seatNum}"
-                                                    th:classappend="${seat.seatNum}">이용 가능으로 변경
+                                                    th:class="'change-empty' + ${seat.seatNum} + ' emptyseat'">이용 가능으로 변경
                                             </button>
                                             <button type="button"
                                                     th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'none\''"
-                                                    th:class="'change-away' + ${seat.seatNum}"
-                                                    th:classappend="${seat.seatNum}">자리 비움으로 변경
+                                                    th:class="'change-away' + ${seat.seatNum} + ' helpseat'">자리 비움으로 변경
                                             </button>
                                             <button type="button"
                                                     th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'none\''"
-                                                    th:class="'change-full' + ${seat.seatNum}"
-                                                    th:classappend="${seat.seatNum}">이용 중으로 변경
+                                                    th:class="'change-full' + ${seat.seatNum} + ' usingseat'">이용 중으로 변경
                                             </button>
                                         </div>
                                     </div>

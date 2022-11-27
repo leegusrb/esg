@@ -1,13 +1,14 @@
 package com.seat.esg.component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seat.esg.domain.RequestMessageForm;
+import com.seat.esg.form.RequestMessageForm;
 import com.seat.esg.domain.SeatStatus;
 import com.seat.esg.service.MessageService;
 import com.seat.esg.service.SeatService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -62,5 +63,10 @@ public class MessageHandler extends TextWebSocketHandler {
                 e.printStackTrace();
             }
         });
+    }
+
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        sessions.remove(session.getId(), session);
     }
 }
