@@ -17,7 +17,7 @@ public class Seat {
 
     private int seatNum;
 
-    private int emptyMinute;
+    private int awayMinute;
 
     @Enumerated(EnumType.STRING)
     private SeatStatus status;
@@ -36,9 +36,18 @@ public class Seat {
     public static Seat createSeat(int SeatNum, Place place) {
         Seat seat = new Seat();
         seat.setSeatNum(SeatNum);
-        seat.setEmptyMinute(0);
+        seat.setAwayMinute(0);
         seat.setStatus(SeatStatus.EMPTY);
         seat.setPlace(place);
         return seat;
+    }
+
+    public int addAwayMinute(int minute) {
+        this.awayMinute += minute;
+        return this.awayMinute;
+    }
+
+    public void initAwayMinute() {
+        this.awayMinute = 0;
     }
 }

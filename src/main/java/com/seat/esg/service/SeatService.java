@@ -15,6 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SeatService {
 
+    private final int cycle = 10;
+
     private final SeatRepository seatRepository;
 
     @Transactional
@@ -42,5 +44,33 @@ public class SeatService {
     public void changeSeatStatus(int seatNum, SeatStatus status) {
         Seat seat = seatRepository.findOneBySeatNum(seatNum);
         seat.setStatus(status);
+    }
+
+    public SeatStatus changeStringStatusToEnum(String status) {
+        switch (status) {
+            case "EMPTY":
+                return SeatStatus.EMPTY;
+            case "AWAY":
+                return SeatStatus.AWAY;
+            case "FULL":
+                return SeatStatus.FULL;
+        }
+        return null;
+    }
+
+    @Transactional
+    public void updateStatus(int seatNum, SeatStatus nowStatus) {
+        Seat seat = seatRepository.findOneBySeatNum(seatNum);
+        if (nowStatus == SeatStatus.AWAY) {
+            int awayMinute = seat.addAwayMinute(cycle);
+            if (awayMinute > 30) {
+                seat.setStatus(SeatStatus.AWAY);
+            } else {
+                seat.setStatus(SeatStatus.FULL);
+            }
+        } else {
+            seat.initAwayMinute();
+            seat.setStatus(nowStatus);
+        }
     }
 }

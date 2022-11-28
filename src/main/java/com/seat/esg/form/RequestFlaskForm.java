@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RequestFlask {
-
+public class RequestFlaskForm {
+    private String request;
 }
