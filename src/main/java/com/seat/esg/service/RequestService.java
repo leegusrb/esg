@@ -19,7 +19,7 @@ public class RequestService {
     private final ObjectMapper objectMapper;
     private final SeatService seatService;
 
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 30000)
     public void requestToFlask() throws IOException {
         String test = testController.Test();
         System.out.println("test = " + test);

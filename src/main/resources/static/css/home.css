@@ -2,13 +2,32 @@ body {
     margin: 20px;
 }
 
+@media(min-width:800px){
+    body {
+        width: 800px;
+        margin: 0 auto;
+    }
+}
+
 #title {
     text-align: center;
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: rgb(91, 91, 218);
-    color: white
+    border-bottom: 5px solid black;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    margin-bottom:0px;
+    /*background-color: rgb(91, 91, 218);*/
+    color: black;
+}
+
+.title_font {
+    font-family: 'Syncopate';
+    font-weight: bold;
+    /*font-family: 'Nanum Gothic', sans-serif;*/
+}
+
+.font {
+    font-family: 'Gothic A1';
+    /*font-family: 'Nanum Gothic', sans-serif;*/
 }
 
 #titlebutton {
@@ -63,13 +82,15 @@ body {
     border: 1px solid black;
     border-radius: 10px;
     margin-bottom: 20px;
+    margin-top:20px;
 }
 
 #window {
     text-align: center;
-    border: 1px solid gray;
-    background-color: gray;
+    padding:1px;
+    background-color: rgba(0, 0, 0, 20%);
     margin: 15px 15px 0;
+    border-radius: 10px;
 }
 
 #gridmap {
@@ -80,11 +101,12 @@ body {
 #studyroom {
     writing-mode: vertical-lr;
     text-align: center;
-    padding: 170px 20px;
-    border: 0;
+    padding: 340% 20px;
+    border: none;
+    border-radius: 10px;
     margin-bottom: 20px;
     margin-top: 20px;
-    background-color: gray;
+    background-color: rgba(0, 0, 0, 20%);
 }
 
 #seats {
@@ -115,29 +137,39 @@ body {
 }
 
 #backmap {
-    background-color: rgb(96, 96, 96);
+    background-color: rgba(0, 0, 0, 10%);
     padding-top: 5px;
+    border-radius: 10px;
 }
 
 .seatbutton {
-    padding: 20px 60px;
+    /*padding: 30px 90px;*/
+    padding: 10% 25%;
     border: 0;
-    margin: 25px 5px;
+    /*margin:*/
+    margin: 10% 0px;
     font-size: 20px;
     cursor: pointer;
     color: black;
+    font-weight: bold;
 }
 
 .usingseat {
-    background-color: red;
+    /*border: 5px solid rgb(74, 74, 74);*/
+    border-radius: 10px;
+    background-color: rgb(254, 65, 65);
+
+    /*width: 20px;*/
 }
 
 .emptyseat {
-    background-color: greenyellow;
+    border-radius: 10px;
+    background-color: rgb(61, 171, 49);
 }
 
 .helpseat {
-    background-color: yellow;
+    border-radius: 10px;
+    background-color: rgb(238, 221, 64);
 }
 
 * {box-sizing: border-box}
@@ -145,7 +177,7 @@ body {
 /* Set a style for all buttons */
 button {
     background-color: #04AA6D;
-    color: black;
+    color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -178,6 +210,7 @@ button:hover {
 .container {
     padding: 16px;
     text-align: center;
+    font-family: 'Gothic A1';
 }
 
 /* The Modal (background) */

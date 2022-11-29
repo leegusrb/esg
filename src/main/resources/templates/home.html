@@ -5,23 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/home.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate&display=swap" rel="stylesheet">
     <title>자리 안내 서비스</title>
 </head>
 <body>
-<h1 id="title">좌석 안내 서비스 입니당당구리.</h1>
+<h1 id="title" class="title_font">Now U SEAT Me</h1>
 <div id="gridseatinfo">
-    <p id="seatinfo">잔여좌석 안내</p>
-    <p>이용중 : <span th:text="${seatNumber.fullSeat}"></span>석</p>
-    <p>이용 가능 : <span th:text="${seatNumber.emptySeat}"></span>석</p>
-    <p>자리 비움 : <span th:text="${seatNumber.awaySeat}"></span>석</p>
+    <p id="seatinfo" class="font">잔여좌석 안내</p>
+    <p class="font"><span style="color:red">●</span> 이용중 : <span th:text="${seatNumber.fullSeat}"></span>석</p>
+    <p class="font"><span style="color:greenyellow">●</span> 이용 가능 : <span th:text="${seatNumber.emptySeat}"></span>석</p>
+    <p class="font"><span style="color:yellow">●</span> 자리 비움 : <span th:text="${seatNumber.awaySeat}"></span>석</p>
 </div>
 <div id="backmap">
     <div id="window">
-        <p>창가</p>
+        <p class="font">창가</p>
     </div>
     <div id="gridmap">
         <div>
-            <p id="studyroom">스터디룸</p>
+            <p id="studyroom" class="font">스터디룸</p>
         </div>
         <div id="seats">
             <div th:each="seat : ${seats}" th:switch="${seat.status.toString()}">
@@ -61,11 +65,6 @@
             </div>
         </div>
     </div>
-</div>
-<div id="gridstateseat">
-    <p><span style="color:red">●</span> 이용중</p>
-    <p><span style="color:greenyellow">●</span> 이용 가능</p>
-    <p><span style="color:yellow">●</span>자리 비움</p>
 </div>
 <script src='/js/home.js'></script>
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
