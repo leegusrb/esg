@@ -20,7 +20,7 @@ public class HomeController {
     private final MessageService messageService;
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home(Model model) throws Exception {
         makeSeatData(model);
         return "home";
     }
