@@ -22,7 +22,6 @@ public class RequestService {
     @Scheduled(fixedDelay = 30000)
     public void requestToFlask() throws IOException {
         String test = testController.Test();
-        System.out.println("test = " + test);
         ResponseFlaskForm responseFlaskForm = objectMapper.readValue(test, ResponseFlaskForm.class);
         List<String> status = responseFlaskForm.getStatus();
 
