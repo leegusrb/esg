@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/home.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate&display=swap" rel="stylesheet">
     <title>자리 안내 서비스</title>
@@ -47,16 +48,15 @@
                         <div class="container">
                             <h1>자리 비움 요청</h1>
                             <p>자리 비움 요청을 하시겠습니까?</p>
-
                             <div class="clearfix">
-                                <button type="button"
-                                        th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'none\''"
-                                        class="cancelbtn">취소
-                                </button>
                                 <button type="button"
                                         th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'none\''"
                                         th:class="'request' + ${seat.seatNum}" id="request"
                                         th:classappend="${seat.seatNum}">자리 비움 요청
+                                </button>
+                                <button type="button"
+                                        th:onclick="'document.getElementById(\'id' + ${seat.seatNum} + '\').style.display=\'none\''"
+                                        class="cancelbtn">취소
                                 </button>
                             </div>
                         </div>

@@ -15,19 +15,16 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
     margin-bottom:0px;
-    /*background-color: rgb(91, 91, 218);*/
     color: black;
 }
 
 .title_font {
     font-family: 'Syncopate';
     font-weight: bold;
-    /*font-family: 'Nanum Gothic', sans-serif;*/
 }
 
 .font {
     font-family: 'Gothic A1';
-    /*font-family: 'Nanum Gothic', sans-serif;*/
 }
 
 #titlebutton {
@@ -88,7 +85,8 @@ body {
 #window {
     text-align: center;
     padding:1px;
-    background-color: rgba(0, 0, 0, 20%);
+    border: 3px solid rgba(0, 0, 0, 70%);
+    background-color: white;
     margin: 15px 15px 0;
     border-radius: 10px;
 }
@@ -106,7 +104,8 @@ body {
     border-radius: 10px;
     margin-bottom: 20px;
     margin-top: 20px;
-    background-color: rgba(0, 0, 0, 20%);
+    border: 3px solid rgba(0, 0, 0, 70%);
+    background-color: white;
 }
 
 #seats {
@@ -133,43 +132,43 @@ body {
     margin: 0;
     padding-top: 15px;
     color: white;
-    background-color: gray;
+    background-color: rgba(0, 0, 0, 30%);
 }
 
 #backmap {
-    background-color: rgba(0, 0, 0, 10%);
+    background-color: rgba(0, 0, 0, 5%);
     padding-top: 5px;
     border-radius: 10px;
+    height: 530px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .seatbutton {
-    /*padding: 30px 90px;*/
-    padding: 10% 25%;
+    padding: 7% 28%;
     border: 0;
-    /*margin:*/
-    margin: 10% 0px;
-    font-size: 20px;
+    border-radius: 10px;
+    margin: 8% 0px;
+    font-size: 180%;
     cursor: pointer;
     color: black;
-    font-weight: bold;
+    font-family: 'Space Mono';
+    background-color: white;
 }
 
 .usingseat {
-    /*border: 5px solid rgb(74, 74, 74);*/
-    border-radius: 10px;
-    background-color: rgb(254, 65, 65);
-
-    /*width: 20px;*/
+    border: 3px solid rgb(254, 65, 65);
+    box-shadow: 0px 6px rgb(254, 65, 65);
 }
 
 .emptyseat {
-    border-radius: 10px;
-    background-color: rgb(61, 171, 49);
+    border: 3px solid rgb(61, 171, 49);
+    box-shadow: 0px 6px rgb(61, 171, 49);
 }
 
 .helpseat {
-    border-radius: 10px;
-    background-color: rgb(238, 221, 64);
+    border: 3px solid rgb(238, 221, 64);
+    box-shadow: 0px 6px rgb(238, 221, 64);
 }
 
 * {box-sizing: border-box}
@@ -191,8 +190,8 @@ button:hover {
 
 /* Float cancel and delete buttons and add an equal width */
 .cancelbtn, .deletebtn {
-    float: left;
-    width: 50%;
+    align-content: center;
+    width: 30%;
 }
 
 /* Add a color to the cancel button */
@@ -268,6 +267,6 @@ hr {
 /* Change styles for cancel button and delete button on extra small screens */
 @media screen and (max-width: 300px) {
     .cancelbtn, .deletebtn {
-        width: 100%;
+        width: 30%;
     }
 }

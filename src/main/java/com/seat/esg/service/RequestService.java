@@ -19,7 +19,7 @@ public class RequestService {
     private final ObjectMapper objectMapper;
     private final SeatService seatService;
 
-    @Scheduled(fixedDelay = 30000)
+    @Scheduled(cron = "0 0/5 9-22 ? * MON-FRI")
     public void requestToFlask() throws IOException {
         String test = testController.Test();
         ResponseFlaskForm responseFlaskForm = objectMapper.readValue(test, ResponseFlaskForm.class);
