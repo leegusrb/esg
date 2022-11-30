@@ -12,8 +12,8 @@ body {
 #title {
     text-align: center;
     border-bottom: 5px solid black;
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-top: 30px;
+    padding-bottom: 0;
     margin-bottom:0px;
     color: black;
 }
