@@ -20,6 +20,11 @@ public class HomeController {
     private final MessageService messageService;
 
     @GetMapping("/")
+    public String firstPage(){
+        return "first";
+    }
+
+    @GetMapping("/home")
     public String home(Model model) throws Exception {
         makeSeatData(model);
         return "home";
