@@ -22,26 +22,6 @@ public class Seat {
     @Enumerated(EnumType.STRING)
     private SeatStatus status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "place_id")
-    private Place place;
-
-    //==연관관계 메서드==//
-    public void setPlace(Place place) {
-        this.place = place;
-        place.getSeats().add(this);
-    }
-
-    //==생성 메서드==//
-    public static Seat createSeat(int SeatNum, Place place) {
-        Seat seat = new Seat();
-        seat.setSeatNum(SeatNum);
-        seat.setAwayMinute(0);
-        seat.setStatus(SeatStatus.EMPTY);
-        seat.setPlace(place);
-        return seat;
-    }
-
     public int addAwayMinute(int minute) {
         this.awayMinute += minute;
         return this.awayMinute;

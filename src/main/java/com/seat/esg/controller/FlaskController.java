@@ -1,7 +1,6 @@
 package com.seat.esg.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,9 +11,9 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 @Controller
-public class TestController {
+public class FlaskController {
 
-    public String Test(){
+    public String responseFromFlask(){
         String url = "http://127.0.0.1:5000/toSpring";
         String sb = "";
         try {
@@ -27,9 +26,7 @@ public class TestController {
             while ((line = br.readLine()) != null) {
                 sb = sb + line + "\n";
             }
-            if (sb.toString().contains("ok")) {
-                System.out.println("test");
-            }
+
             br.close();
 
         } catch (MalformedURLException e) {

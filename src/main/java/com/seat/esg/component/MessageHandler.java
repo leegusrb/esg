@@ -44,7 +44,6 @@ public class MessageHandler extends TextWebSocketHandler {
                 messageService.createAwayRequestMessage(seatNum);
                 break;
             case "CHANGE-EMPTY":
-                messageService.deleteClearSeatMessage(seatNum);
                 seatService.changeSeatStatus(seatNum, SeatStatus.EMPTY);
                 break;
             case "CHANGE-AWAY":

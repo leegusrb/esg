@@ -1,7 +1,7 @@
 package com.seat.esg.service;
 
-import com.seat.esg.domain.SeatNumber;
 import com.seat.esg.domain.Seat;
+import com.seat.esg.domain.SeatNumber;
 import com.seat.esg.domain.SeatStatus;
 import com.seat.esg.repository.SeatRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +15,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SeatService {
 
-    private final int cycle = 10;
+    private final int cycle = 5;
 
     private final SeatRepository seatRepository;
+    private final MessageService messageService;
 
     @Transactional
     public void saveSeat(Seat seat) {
@@ -44,6 +45,7 @@ public class SeatService {
     public void changeSeatStatus(int seatNum, SeatStatus status) {
         Seat seat = seatRepository.findOneBySeatNum(seatNum);
         seat.setStatus(status);
+        messageService.deleteClearSeatMessage(seatNum);
     }
 
     public SeatStatus changeStringStatusToEnum(String status) {
@@ -72,5 +74,6 @@ public class SeatService {
             seat.initAwayMinute();
             seat.setStatus(nowStatus);
         }
+        messageService.deleteClearSeatMessage(seatNum);
     }
 }

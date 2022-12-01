@@ -3,7 +3,7 @@ package com.seat.esg.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.seat.esg.form.ResponseFlaskForm;
 import com.seat.esg.domain.SeatStatus;
-import com.seat.esg.controller.TestController;
+import com.seat.esg.controller.FlaskController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -15,13 +15,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RequestService {
 
-    private final TestController testController;
+    private final FlaskController flaskController;
     private final ObjectMapper objectMapper;
     private final SeatService seatService;
 
     @Scheduled(cron = "0 0/5 9-22 ? * MON-FRI")
     public void requestToFlask() throws IOException {
-        String test = testController.Test();
+        String test = flaskController.responseFromFlask();
         ResponseFlaskForm responseFlaskForm = objectMapper.readValue(test, ResponseFlaskForm.class);
         List<String> status = responseFlaskForm.getStatus();
 
