@@ -11,7 +11,7 @@ import javax.annotation.PostConstruct;
 
 @Component
 @RequiredArgsConstructor
-public class initValues {
+public class InitValues {
 
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
